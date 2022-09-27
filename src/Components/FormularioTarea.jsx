@@ -2,18 +2,26 @@ import ListaTarea from "./ListaTarea";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
-const FormularioTarea = () => {
+const FormularioTarea = ({addTarea}) => {
   // aquí va la mayoría de la lógica
 
-  const [tarea, setTarea] = useState("");
+  const [tarea, setTarea] = useState("Hola 123");
   const [arregloTarea, setArregloTarea] = useState([]);
+
+const handleOnChange = (e) => {
+  setTarea(e.currentTarget.value);
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //arregloTarea.push no podemos usar el push con el state.
+  if (tarea.trim() !==''){
+    addTarea(tarea);
+    setTarea('');
+
+  }
     setArregloTarea([...arregloTarea, tarea]);
     //limpiar el input
-    setTarea('')
+   
   };
 
   return (
@@ -23,8 +31,9 @@ const FormularioTarea = () => {
           <Form.Control
             type="text"
             placeholder="Ingrese una tarea"
-            onChange={(e) => setTarea(e.target.value)}
+            onChange={handleOnChange}
             value={tarea}
+            
           />
           <Button variant="primary" type="submit">
             Enviar
