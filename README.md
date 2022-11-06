@@ -16,3 +16,5 @@ localstorage.
 bootstrap.min.css
 
 json-server --watch db.json --port 3004
+npm install sweetalert2
+
