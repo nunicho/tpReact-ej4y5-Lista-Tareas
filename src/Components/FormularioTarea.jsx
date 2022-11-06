@@ -1,51 +1,36 @@
 import ListaTarea from "./ListaTarea";
 import { Form, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { consultarAPI} from './helpers/queries'
+import { useEffect, useState } from "react";
+import {useForm} from "react-hook-form"
+
 
 const FormularioTarea = () => {
-  // busco los datos del localStorage
-  const tareasLocalStorage = JSON.parse(localStorage.getItem('arregloTareaKey')) || [];
-  //aqui va la mayoria de la logica
-  const [tarea, setTarea] = useState("");
-  const [arregloTarea, setArregloTarea] = useState(tareasLocalStorage);
+  useState[tareas, setTareas] = useState([])
 
 
-// Ciclo de vida del componente (useEffect)
+  
 useEffect(()=>{
-console.log('prueba de ciclo de vida del componente')
-JSON.stringify(arregloTarea)
-localStorage.setItem('arregloTareaKey', JSON.stringify(arregloTarea));
-},[arregloTarea])
+consultarAPI().then((respuesta)=>{
+  setTareas(respuesta)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // arregloTarea.push no podemos usar el push con el state
-    setArregloTarea([...arregloTarea, tarea]);
-    //limpiar el input
-    setTarea('');
-  };
-const borrarTarea = (nombre) =>{
-  let arregloModificado = arregloTarea.filter((item)=>(item !== nombre ))
-  // actualizo el state
-  setArregloTarea(arregloModificado)
-}
+
+})
+},[])
+
+
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
-          <Form.Control
-            type="text"
-            placeholder="Ingrese una tarea"
-            onChange={(e) => setTarea(e.target.value)}
-            value={tarea}
-          />
+          <Form.Control/>
           <Button variant="primary" type="submit">
             Enviar
           </Button>
         </Form.Group>
       </Form>
 
-      <ListaTarea arregloTarea={arregloTarea} borrarTarea={borrarTarea} ></ListaTarea>
+      <ListaTarea></ListaTarea>
     </div>
   );
 };

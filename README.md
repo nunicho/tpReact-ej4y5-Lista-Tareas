@@ -14,3 +14,5 @@ localstorage.
 ## Componentes utilizados
 
 bootstrap.min.css
+
+json-server --watch db.json --port 3004
