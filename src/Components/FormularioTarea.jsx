@@ -39,7 +39,7 @@ useEffect(() => {
  return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
+        <Form.Group className="mb-3 d-flex" controlId="formBasic">
           <Form.Control
             type="text"
             placeholder="Ingrese una tarea"
@@ -52,11 +52,11 @@ useEffect(() => {
             message: 'Debe ingresar como mínimo 2 caracteres'
              },
             maxLength:{
-            value: 200,
-            message: 'Debe ingresar como máximo 200 caracteres'
+            value: 150,
+            message: 'Debe ingresar como máximo 150 caracteres'
            }})}
           />
-          <Form.Text className="mb-3" controlID="formTarea">
+          <Form.Text className="text-danger">
             {errors.nombreTarea?.message}
           </Form.Text>
           <Button variant="primary" type="submit">

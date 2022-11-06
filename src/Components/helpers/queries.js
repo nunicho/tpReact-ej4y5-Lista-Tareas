@@ -1,5 +1,5 @@
 
-const URL = 'http://localhost:3004/tareas';
+const URL = 'http://localhost:4004/apitareas/tareas';
 
 export const consultarAPI = async()=>{
     try{
