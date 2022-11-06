@@ -9,6 +9,12 @@ const FormularioTarea = () => {
   useState[tareas, setTareas] = useState([])
 
 
+//validaciones
+  const {register, handleSubmit, formState:{errors}}=useForm();
+  const onSubmit = (datos)=>{
+    console.log(datos)
+    console.log('desde nuestra función submit')
+  }
   
 useEffect(()=>{
 consultarAPI().then((respuesta)=>{
@@ -21,7 +27,7 @@ consultarAPI().then((respuesta)=>{
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
           <Form.Control/>
           <Button variant="primary" type="submit">
